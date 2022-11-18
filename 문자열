@@ -15,6 +15,9 @@ int main(void)
 }
 
 
+
+//문자열을 입력하시오:##con@@##cert!!!
+//출력 문자열:concert
 #include<stdio.h>
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -24,18 +27,59 @@ int main(void)
 	char line2[100] = "";
 
 	printf("문자열을 입력하시오:");
-	ge_s(line, sizeof(line));// 한 줄의 문자열 입력
+	gets_s(line, sizeof(line));// 한 줄의 문자열 입력
 
 	int k = 0;
 	for (int i = 0; line[i] != '\0'; ++i)
 	{
 		while ((line[i] >= 'A' && line[i] <= 'Z') || (line[i] >= 'a' && line[i] <= 'z'))
 		{
-		line2[K++] = line[i++]; 
+		line2[k++] = line[i++]; 
 		}
 
 	}
-	line2[K] = '\0';
+	line2[k] = '\0';
 	printf("출력 문자열: %s\n", line2);
 	return 0;
+}
+
+
+//화살표 받기 어쩌구
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+int main(void) {
+char board[10][10] = { {'#', '#', '#', '#', '.', '.', '.', '.', '.', '.' },
+{'.', '.', '.', '.', '.', '#', '.', '.', '.', '.' },
+{'#', '#', '#', '.', '#', '.', '.', '.', '.', '.' },
+{'.', '.', '#', '.', '.', '#', '.', '.', '.', '.' },
+{'.', '.', '#', '.', '.', '#', '.', '.', '.', '.' },
+{'.', '.', '#', '.', '.', '#', '.', '.', '.', '.' },
+{'.', '.', '.', '#', '.', '.', '#', '#', '.', '.' },
+{'.', '.', '.', '.', '#', '.', '.', '.', '#', '#' },
+{'.', '.', '.', '.', '.', '#', '.', '.', '.', '.' },
+{'.', '.', '.', '.', '.', '#', '#', '#', '#', '#' } };
+int xpos = 0, ypos = 1;
+board[ypos][xpos] = '@'; // 사용자로부터 위치를 받아서 보드에 표시한다. 
+while (1) {
+system("cls");
+printf("왼쪽이동:<-, 오른쪽 이동:-> 위쪽 이동:^, 아래쪽 이동:V\n");
+for (int y = 0; y < 10; y++) {
+for (int x = 0; x < 10; x++) printf("%c", board[y][x]);
+printf("\n");
+}
+board[ypos][xpos] = '.';
+int ch = _getch();
+if (ch == 224) {
+int ch2 = _getch();
+if (ch2 == 75) xpos--;
+else if (ch2 == 80) ypos++;
+else if (ch2 == 72) ypos--;
+else if (ch2 == 77) xpos++;
+}
+if (ch == 'x')
+return 0;
+board[ypos][xpos] = '@';
+}
+return 0;
 }
